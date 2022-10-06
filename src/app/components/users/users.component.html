@@ -1,0 +1,61 @@
+<div *ngIf="userType === 'User'">
+    <h1 class="display-6">User with id {{userId}}:</h1>
+    <mat-card>
+        <button mat-icon-button>
+            <mat-icon (click)="delete(userData.id)" color="warn">delete</mat-icon>
+        </button>
+        <div class="post-title">
+            {{userData.id}}
+        </div>
+        <div class="post-body">
+            <div>
+                {{userData.fullname}}
+            </div>
+            <div>
+                {{userData.email}}
+            </div>
+            <div>
+                {{userData.type}}
+            </div>
+        </div>
+    </mat-card>
+</div>
+
+
+<div class="container mt-5" *ngIf="userType === 'Admin'">
+
+    <!-- success message -->
+    <!-- <div *ngIf="successmsg" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{successmsg}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> -->
+    <!-- <p class="h5">To delete {{userType}} with id {{userId}}: <button class="btn btn-sm btn-danger"
+            (click)="delete(userId)">Delete</button></p> -->
+
+
+
+    <table class="table table-bordered mt-5">
+        <thead>
+            <tr>
+                <th scope="col">UserId</th>
+                <th scope="col">FullName</th>
+                <th scope="col">Email</th>
+                <th scope="col">Type</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of check">
+                <th scope="row">{{user.id}}</th>
+                <td>{{user.fullname}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.type}}</td>
+                <td>
+                <!-- <a [routerLink]="['/create', user.id]" class="btn btn-sm btn-success">Edit</a>
+                    &nbsp; -->
+                <button class="btn btn-sm btn-danger" (click)="delete(user.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
